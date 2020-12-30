@@ -1,0 +1,11 @@
+{
+    "name": "wdio-automation",
+    "version": "1.0.0",
+    "description": "automation framework",
+    "main": "index.js",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "dotenv": "^8.2.0"
+    }
+}
