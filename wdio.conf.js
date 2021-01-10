@@ -3,13 +3,13 @@ require('dotenv').config();
 exports.config = {
     runner: 'local',
     specs: [
-        './tests/*.feature'
+        './tests/features/*.feature'
     ],
     exclude: [
     ],
-    maxInstances: 10,
+    maxInstances: 1,
     capabilities: [{
-        maxInstances: 5,
+        maxInstances: 1,
         browserName: 'chrome',
         acceptInsecureCerts: true
     }],
@@ -22,8 +22,10 @@ exports.config = {
     services: ['chromedriver'],
     framework: 'cucumber',
     reporters: ['spec'],
+    logLevel: 'error',
     cucumberOpts: {
-        require: ['./tests/step-definitions/*.js'],
+        require: ['./tests/step-definitions/*.js',
+            './tests/helpers/prototypes.js'],
         backtrace: false,
         requireModule: ['@babel/register'],
         dryRun: false,
