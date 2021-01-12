@@ -15,11 +15,11 @@ class HomePage extends Page {
     }
 
     get userNavButton() {
-        return $('#userNavButton');
+        return $('#globalHeaderNameMink');
     }
 
     get logoutButton() {
-        return $('#userNav-menuItems > a[title="Logout"]');
+        return $('ul.zen-options[role="menu"] >li > a[title="Logout"]');
     }
 }
 

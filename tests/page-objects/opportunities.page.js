@@ -4,14 +4,6 @@ class OpportunitiesPage extends Page {
 
     constructor() {
         super();
-        this.details = {
-            opportunityName: 'New Opp1',
-            accountName: 'Account Name',
-            recordType: '',
-            leadSource: '',
-            stage: '',
-            closeDate: new Date().toLocaleDateString()
-        };
     }
 
     get newOpportunitiesButton() {
@@ -22,16 +14,28 @@ class OpportunitiesPage extends Page {
         return $('#topButtonRow input[title="Save"]');
     }
 
+    get continueButton() {
+        return $('input[title="Continue"]');
+    }
+
     get opportunityNameInput() {
         return $('#opp3');
     }
 
     get accountNameInput() {
-        return $('#opp4');
+        return $('#opp4_lkold');
+    }
+
+    get accountId() {
+        return $('#opp4_lkid');
+    }
+
+    get accountNameLookup() {
+        return $('#opp4_lkwgt');
     }
 
     get recordTypeOptions() {
-        return $('#opp5');
+        return $('#p3');
     }
 
     get leadSourceOptions() {
@@ -42,8 +46,48 @@ class OpportunitiesPage extends Page {
         return $('#opp11');
     }
 
+    get forecastCategoryOptions() {
+        return $('select[id="00N80000005BM7k"]');
+    }
+
     get closeDateInput() {
         return $('#opp9');
+    }
+
+    get geographyOptions() {
+        return $('select[id="00N30000000cWa2"]');
+    }
+
+    get regionOptions() {
+        return $('select[id="00N30000000cSd5"]');
+    }
+
+    get subregionOptions() {
+        return $('select[id="00N34000005gZyJ"]');
+    }
+
+    get contactLookup() {
+        return $('a[id="CF00NV0000001jBze_lkwgt"]');
+    }
+
+    get contactNameInput() {
+        return $('input[id="CF00NV0000001jBze_lkold"]');
+    }
+
+    get contactId() {
+        return $('input[id="CF00NV0000001jBze_lkid"]');
+    }
+
+    get ledByOptions() {
+        return $('select[id="00N34000006Dcg4"]');
+    }
+
+    get eRateDealOptions() {
+        return $('select[id="00N8000000591DW"]');
+    }
+
+    get fulfillmentOptions() {
+        return $('select[id="00N30000000c9AQ"]');
     }
 
     get createdOpportunityName() {
@@ -55,7 +99,7 @@ class OpportunitiesPage extends Page {
     }
 
     get createdRecordType() {
-        return $('#opp5_ileinner');
+        return $('#RecordType_ileinner');
     }
 
     get createdLeadSource() {
@@ -66,20 +110,40 @@ class OpportunitiesPage extends Page {
         return $('#opp11_ileinner');
     }
 
+    get createdForecastCategory() {
+        return $('div[id="00N80000005BM7k_ileinner"]');
+    }
+
+    get createdGeography() {
+        return $('div[id="00N30000000cWa2_ileinner"]');
+    }
+
+    get createdRegion() {
+        return $('div[id="00N30000000cSd5_ileinner"]');
+    }
+
+    get createdSubregion() {
+        return $('div[id="00N34000005gZyJ_ileinner"]');
+    }
+
+    get createdContact() {
+        return $('div[id="CF00NV0000001jBze_ileinner"]');
+    }
+
+    get createdFulfillment() {
+        return $('div[id="00N30000000c9AQ_ileinner"]');
+    }
+
     get createdCloseDate() {
         return $('#opp9_ileinner');
     }
 
-    fillForm() {
-        this.opportunityNameInput.setValue(this.details.opportunityName);
-        this.accountNameInput.setValue(this.details.accountName);
-        this.recordTypeOptions.selectByIndex(1);
-        this.details.recordType = this.recordTypeOptions.getValue();
-        this.leadSourceOptions.selectByIndex(2);
-        this.details.leadSource = this.leadSourceOptions.getValue();
-        this.stageOptions.selectByIndex(1);
-        this.details.stage = this.stageOptions.getValue();
-        this.closeDateInput.setValue(this.details.closeDate);
+    get createdLedBy() {
+        return $('div[id="00N34000006Dcg4_ileinner"]');
+    }
+
+    get createdERateDeal() {
+        return $('div[id="00N8000000591DW_ileinner"]');
     }
 }
 
