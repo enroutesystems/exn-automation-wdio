@@ -19,7 +19,7 @@ class HomePage extends Page {
     }
 
     get logoutButton() {
-        return $('ul.zen-options[role="menu"] >li > a[title="Logout"]');
+        return $('ul.zen-options[role="menu"] > li > a[title="Logout"]');
     }
 }
 
