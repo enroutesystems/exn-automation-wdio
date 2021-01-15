@@ -1,7 +1,7 @@
 import { Given } from 'cucumber';
 import { loginPO, homePO } from '../page-objects/index';
 
-Given(/^a user with "([^"]*)" role is on the "([^"]*)"? tab$/, (role, tab) => {
+Given(/^a user with "([^"]*)" role is on the "([^"]*)" tab$/, (role, tab) => {
     loginPO.open();
     loginPO.usernameInput.waitForDisplayed();
     loginPO.usernameInput.setValue(process.env.USERNAME);
