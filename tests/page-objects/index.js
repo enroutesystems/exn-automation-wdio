@@ -1,11 +1,13 @@
-import loginPO from './login.page';
 import homePO from './home.page';
-import opportunitiesPO from './opportunities.page';
+import loginPO from './login.page';
 import lookupPO from './lookup.page';
+import opportunitiesPO from './opportunities.page';
+import quotePO from './quotes.page';
 
 export {
-    loginPO,
     homePO,
+    loginPO,
+    lookupPO,
     opportunitiesPO,
-    lookupPO
+    quotePO
 };

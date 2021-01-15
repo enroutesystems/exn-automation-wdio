@@ -13,5 +13,13 @@ Date.prototype.toShortISOString = function () {
 };
 
 Date.prototype.toExnDateString = function () {
-    return `${this.getDate()}-${this.getMonth() + 1}-${this.getFullYear()}`;
+    const day = this.getDate().toString().padStart(2, '0');
+    const month = (this.getMonth() + 1).toString().padStart(2, '0');
+    return `${day}-${month}-${this.getFullYear()}`;
 }
+
+String.prototype.toCamelCase = function () {
+    return this.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter, index) {
+        return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+    }).replace(/\s+/g, '');
+};

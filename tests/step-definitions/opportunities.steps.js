@@ -2,6 +2,7 @@ import { When } from 'cucumber';
 import { opportunitiesPO, lookupPO } from '../page-objects/index';
 
 const details = require('../helpers/constants').opportunityDetails;
+const generateId = require('../helpers/common').generateId;
 const date = new Date();
 
 When(/^clicks on the new opportunities button$/, () => {
@@ -17,7 +18,7 @@ When(/^selects "([^"]*)" new record type$/, (type) => {
 });
 
 When(/^fills new opportunities form$/, () => {
-    details.opportunityName = `Test Op ${date.toShortISOString().replace('-', '')}`;
+    details.opportunityName = `Test Op ${generateId()}`;
     details.closeDate = date.toExnDateString();
     opportunitiesPO.accountNameInput.waitForExist();
     opportunitiesPO.opportunityNameInput.setValue(details.opportunityName);

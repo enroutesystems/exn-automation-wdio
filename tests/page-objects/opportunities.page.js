@@ -90,6 +90,14 @@ class OpportunitiesPage extends Page {
         return $('select[id="00N30000000c9AQ"]');
     }
 
+    get opportinitiesList() {
+        return $$('tr.dataRow > th > a');
+    }
+
+    get newQuoteButton() {
+        return $('input[value="New Quote"]');
+    }
+
     get createdOpportunityName() {
         return $('#opp3_ileinner');
     }
