@@ -16,17 +16,6 @@ Given(/^opens an opportunity$/, () => {
     latestOp.click();
 });
 
-When(/^clicks on "([^"]*)" button$/, (button) => {
-    button = button.toCamelCase();
-    browser.pause(1000);
-
-    if (opportunitiesPO[`${button}Button`]) {
-        opportunitiesPO[`${button}Button`].click();
-    } else {
-        quotePO[`${button}Button`].click();
-    }
-});
-
 When(/^quote form is displayed$/, () => {
     quotePO.quoteNameInput.waitForExist();
 });
@@ -70,7 +59,7 @@ When(/^fills sku list$/, () => {
     }
 });
 
-When(/^selects "([^"]*)" discount$/, (num) => {
+When(/^selects "([^"]*)" discount$/, (discount) => {
     details.table.totalPrice = parseFloat(quotePO.accquisitionTotal
         .getText().replace(/(\$||,)*/g, ''));
 
@@ -86,5 +75,6 @@ Then(/^prices listed are updated$/, () => {
 
 Then(/^submites quote form approval$/, () => {
     quotePO.submitForApprovalButton.click();
+
     expect(quotePO.errorMessageBox.isDisplayed()).toBeFalsy();
 });

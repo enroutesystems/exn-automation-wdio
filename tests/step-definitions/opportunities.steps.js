@@ -15,11 +15,6 @@ const selectLookupValue = (item = 0) => {
     browser.switchToWindow(formWindow);
 };
 
-When(/^clicks on the new opportunities button$/, () => {
-    opportunitiesPO.newOpportunitiesButton.waitForEnabled();
-    opportunitiesPO.newOpportunitiesButton.click();
-});
-
 When(/^selects "([^"]*)" new record type$/, (type) => {
     details.recordType = type;
     opportunitiesPO.recordTypeOptions.waitForExist();
