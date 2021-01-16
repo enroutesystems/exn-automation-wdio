@@ -1,22 +1,32 @@
 require('dotenv').config();
 
+let tags = process.env.CUCUMBER_TAGS !== undefined && process.env.CUCUMBER_TAGS !== ''
+    ? process.env.CUCUMBER_TAGS + ' and ' : '';
+const features = process.env.FEATURES
+    ? process.env.FEATURES.split(/\s/) : ['./tests/features/*.feature'];
+
+tags = tags + 'not (@ignore or @pending)';
+
 exports.config = {
     runner: 'local',
-    specs: [
-        './tests/features/*.feature'
-    ],
+    specs: features,
     exclude: [
     ],
     maxInstances: 1,
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
-        acceptInsecureCerts: true
+        acceptInsecureCerts: true,
+        'goog:chromeOptions': {
+            args: [
+                '--disable-web-security'
+            ]
+        }
     }],
     logLevel: 'info',
     bail: 0,
     baseUrl: process.env.BASE_URL,
-    waitforTimeout: 10000,
+    waitforTimeout: 20000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
     services: ['chromedriver'],
@@ -35,7 +45,7 @@ exports.config = {
         source: true,
         profile: [],
         strict: false,
-        tagExpression: '',
+        tagExpression: tags,
         timeout: 60000,
         ignoreUndefinedDefinitions: false
     },
