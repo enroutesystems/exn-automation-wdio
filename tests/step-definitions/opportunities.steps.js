@@ -4,6 +4,16 @@ import { opportunitiesPO, lookupPO } from '../page-objects/index';
 const details = require('../helpers/constants').opportunityDetails;
 const generateId = require('../helpers/common').generateId;
 const date = new Date();
+const selectLookupValue = (item = 0) => {
+    const [ formWindow, lookupWindow ] = browser.getWindowHandles();
+    browser.switchToWindow(lookupWindow);
+    browser.switchToFrame(1);
+    browser.pause(1000);
+    lookupPO.table.waitForExist();
+    lookupPO.list[item].click();
+
+    browser.switchToWindow(formWindow);
+};
 
 When(/^clicks on the new opportunities button$/, () => {
     opportunitiesPO.newOpportunitiesButton.waitForEnabled();
@@ -26,16 +36,8 @@ When(/^fills new opportunities form$/, () => {
     browser.pause(200);
 
     // Select Account from lookup tab
-    let [ formWindow, lookupWindow ] = browser.getWindowHandles();
-    browser.switchToWindow(lookupWindow);
-    browser.switchToFrame(1);
-    browser.pause(1000);
-    lookupPO.table.waitForExist();
-    const [ account ] = lookupPO.list.slice(-1);
-    account.click();
+    selectLookupValue(1);
 
-    // Return to form
-    browser.switchToWindow(formWindow);
     opportunitiesPO.accountNameInput.waitForExist();
     details.accountName = opportunitiesPO.accountNameInput.getValue();
     opportunitiesPO.leadSourceOptions.selectByVisibleText(details.leadSource);
@@ -50,16 +52,8 @@ When(/^fills new opportunities form$/, () => {
     browser.pause(200);
 
     // Select contact from list
-    [ formWindow, lookupWindow ] = browser.getWindowHandles();
-    browser.switchToWindow(lookupWindow);
-    browser.switchToFrame(1);
-    browser.pause(1000);
-    lookupPO.table.waitForExist();
-    const [ contact ] = lookupPO.list;
-    contact.click();
+    selectLookupValue();
 
-    // Return to form
-    browser.switchToWindow(formWindow);
     opportunitiesPO.accountNameInput.waitForExist();
     details.contact = opportunitiesPO.contactNameInput.getValue();
     opportunitiesPO.ledByOptions.selectByVisibleText(details.ledBy);

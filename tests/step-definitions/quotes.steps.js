@@ -3,6 +3,10 @@ import { opportunitiesPO, quotePO } from '../page-objects/index';
 
 const details = require('../helpers/constants').quoteDetails;
 const generateId = require('../helpers/common').generateId;
+const setValueHiddenElements = (querySelector, i, value) => {
+    const elements = document.querySelectorAll(querySelector);
+    elements[i].value = value;
+};
 
 Given(/^opens an opportunity$/, () => {
     opportunitiesPO.newOpportunitiesButton.waitForExist();
@@ -49,15 +53,16 @@ When(/^fills sku list$/, () => {
     // Add discounts
     for (const [i, item] of details.table.items.entries()) {
         quotePO.discountTypeOptions[i].selectByVisibleText(item.discountType);
-        browser.pause(1000);
+        browser.pause(250);
 
         switch (item.discountType) {
             case '%':
-                quotePO.percentOffInput[i].setValue(item.discountQuantity);
-                browser.pause(5000)
+                browser.execute(setValueHiddenElements, // script to execute
+                    quotePO.percentOffInput[i].selector, i, item.discountQuantity); // parameters
                 break;
             case '$':
-                quotePO.priceOffInput[i].setValue(item.discountQuantity);
+                browser.execute(setValueHiddenElements, // script to execute
+                    quotePO.priceOffInput[i].selector, i, item.discountQuantity); // parameters
                 break;
             default:
                 break;

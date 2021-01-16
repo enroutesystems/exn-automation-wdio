@@ -55,7 +55,7 @@ class QuotePage extends Page {
     }
 
     get priceOffInput() {
-        return $$('td[data-colid="1127214225"] > div > div > div > input[class~="cm-attr-value"]');
+        return $$('td[data-colid="1127214225"] > div > div > div > input[type="hidden"]');
     }
 
     get accquisitionTotal() {
