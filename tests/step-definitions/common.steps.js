@@ -1,5 +1,6 @@
 import { Given, When } from 'cucumber';
-import { loginPO, homePO, quotePO, opportunitiesPO } from '../page-objects/index';
+import exnHomePage from '../page-objects/exn-home.page';
+import { loginPO, homePO, exnQuotePO, opportunitiesPO, exnHomePO } from '../page-objects/index';
 
 Given(/^a user with "([^"]*)" role is on the "([^"]*)" tab$/, (role, tab) => {
     const user = role.toUpperCase().replace(' ','_');
@@ -13,13 +14,21 @@ Given(/^a user with "([^"]*)" role is on the "([^"]*)" tab$/, (role, tab) => {
     homePO[`${tab}Tab`].click();
 });
 
-When(/^clicks on "([^"]*)" button$/, (button) => {
-    button = button.toCamelCase();
+When(/^clicks on "([^"]*)" "([^"]*)"$/, (name, type) => {
+    name = name.toCamelCase();
     browser.pause(1000);
 
-    if (opportunitiesPO[`${button}Button`]) {
-        opportunitiesPO[`${button}Button`].click();
+    if (type === 'link') {
+        if (homePO[`${name}Link`]) {
+            homePO[`${name}Link`].click();
+        } else {
+            exnHomePO.existingQuotesLink.click();
+        }
     } else {
-        quotePO[`${button}Button`].click();
+        if (opportunitiesPO[`${name}Button`]) {
+            opportunitiesPO[`${name}Button`].click();
+        } else {
+            exnQuotePO[`${name}Button`].click();
+        }
     }
 });

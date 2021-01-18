@@ -17,6 +17,7 @@ module.exports = {
     },
     quoteDetails: {
         quoteName: '',
+        opportunityName: '',
         description: 'Quote created for test purpose - PLEASE IGNORE',
         table: {
             items: [
