@@ -3,7 +3,7 @@
  */
 
 import { After } from 'cucumber';
-import { homePO, loginPO, quotePO } from '../page-objects/index'
+import { homePO, loginPO, exnQuotePO } from '../page-objects/index'
 
 After({ tags: 'not @quotes' },() => {
     // Logout
@@ -12,11 +12,16 @@ After({ tags: 'not @quotes' },() => {
     homePO.logoutButton.waitForDisplayed();
     homePO.logoutButton.click();
     loginPO.usernameInput.waitForExist();
-
 });
 
 After({ tags: '@quotes' },() => {
     // Logout
-    quotePO.currentTab.waitForExist();
-    quotePO.logoutButton.click();
+    exnQuotePO.currentTab.waitForExist();
+    exnQuotePO.logoutButton.click();
+    browser.url(process.env.BASE_URL);
+    homePO.tabContainer.waitForExist({timeout: 2000});
+    homePO.userNavButton.click();
+    homePO.logoutButton.waitForDisplayed();
+    homePO.logoutButton.click();
+    loginPO.usernameInput.waitForExist();
 });

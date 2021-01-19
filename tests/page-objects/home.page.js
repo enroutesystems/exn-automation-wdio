@@ -14,12 +14,20 @@ class HomePage extends Page {
         return $('#Opportunity_Tab > a');
     }
 
+    get homeTab() {
+        return $('#home_Tab > a');
+    }
+
     get userNavButton() {
         return $('#globalHeaderNameMink');
     }
 
     get logoutButton() {
         return $('ul.zen-options[role="menu"] > li > a[title="Logout"]');
+    }
+
+    get bmiLink() {
+        return $('.linksModule:nth-child(6) > div > ul > li > a');
     }
 }
 
