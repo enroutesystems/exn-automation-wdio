@@ -15,6 +15,10 @@ class QuotePage extends ExtremeNetworksPage {
         return $('li[aria-label="Approval"]');
     }
 
+    get orderEntryChecklistTab() {
+        return $('li[aria-label="Order Entry Checklist"]');
+    }
+
     get quoteNumber() {
         return $('#readonly_1_quoteNumber_q');
     }
@@ -99,12 +103,36 @@ class QuotePage extends ExtremeNetworksPage {
         return $$('td[data-colid="1127214225"] > div > div > div > input[type="hidden"]');
     }
 
+    get promosCheckbox() {
+        return $$('div[id$="promotionsList_t"] input[type="checkbox"]');
+    }
+
     get accquisitionTotal() {
         return $('[id="0_lineItemColtotal_extendedAcquisitionPrice_l_1114587221"]');
     }
 
     get submitForApprovalButton() {
         return $('#submit_for_approval');
+    }
+
+    get poNumberInput() {
+        return $('#pONumber_q');
+    }
+
+    get poDateInput() {
+        return $('#pODate_q');
+    }
+
+    get paymentTermsOptions() {
+        return $('select[name="paymentTerms_q"]');
+    }
+
+    get orderManagerOptions() {
+        return $('select[name="orderManager_q"]');
+    }
+
+    get submitOMButton() {
+        return $('#submit_to_om');
     }
 }
 

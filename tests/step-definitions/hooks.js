@@ -5,23 +5,17 @@
 import { After } from 'cucumber';
 import { homePO, loginPO, exnQuotePO } from '../page-objects/index'
 
-After({ tags: 'not @quotes' },() => {
+After(() => {
     // Logout
-    homePO.tabContainer.waitForExist({timeout: 2000});
+    if (exnQuotePO.currentTab.isDisplayed()) {
+        exnQuotePO.logoutButton.click();
+        browser.url(process.env.BASE_URL);
+        homePO.tabContainer.waitForExist({timeout: 2000});
+    } else if (!homePO.tabContainer.isDisplayed()) {
+        throw new Error('Unknown page object displayed');
+    }
     homePO.userNavButton.click();
     homePO.logoutButton.waitForDisplayed();
     homePO.logoutButton.click();
-    loginPO.usernameInput.waitForExist();
-});
-
-After({ tags: '@quotes' },() => {
-    // Logout
-    exnQuotePO.currentTab.waitForExist();
-    exnQuotePO.logoutButton.click();
-    browser.url(process.env.BASE_URL);
-    homePO.tabContainer.waitForExist({timeout: 2000});
-    homePO.userNavButton.click();
-    homePO.logoutButton.waitForDisplayed();
-    homePO.logoutButton.click();
-    loginPO.usernameInput.waitForExist();
+    homePO.userNavButton.waitForDisplayed({ reverse: true});
 });

@@ -49,6 +49,12 @@ module.exports = {
             ],
             expectedPrice: '',
             totalPrice: ''
+        },
+        orderEntryChecklist: {
+            poNumber: '',
+            poDate: '',
+            paymentTerms: 'NET 90',
+            orderManager: 'Sri Manikanta Karthik Vuda'
         }
     },
 }

@@ -12,10 +12,10 @@ Date.prototype.toShortISOString = function () {
     return this.toISOString().split('T')[0];
 };
 
-Date.prototype.toExnDateString = function () {
+Date.prototype.toExnDateString = function (separator = '-') {
     const day = this.getDate().toString().padStart(2, '0');
     const month = (this.getMonth() + 1).toString().padStart(2, '0');
-    return `${day}-${month}-${this.getFullYear()}`;
+    return day + separator + month + separator + this.getFullYear();
 }
 
 String.prototype.toCamelCase = function () {

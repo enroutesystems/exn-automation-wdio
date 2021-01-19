@@ -83,6 +83,17 @@ When(/^approves quote$/, () => {
     // TODO: button css selector
 });
 
+When(/^fills PO fields$/, () => {
+    const date = new Date();
+
+    details.orderEntryChecklist.poNumber = `${generateId}-TEST`;
+    details.orderEntryChecklist.poDate = date.toExnDateString('/');
+    exnQuotePO.poNumberInput.setValue(details.orderEntryChecklist.poNumber);
+    exnQuotePO.poDateInput.setValue(details.orderEntryChecklist.poDate);
+    exnQuotePO.paymentTermsOptions.selectByVisibleText(details.orderEntryChecklist.paymentTerms);
+    exnQuotePO.orderManagerOptions.selectByVisibleText(details.orderEntryChecklist.orderManager);
+});
+
 Then(/^prices listed are updated$/, () => {
     const totalPriceUpdated = parseFloat(exnQuotePO.accquisitionTotal
         .getText().replace(/(\$||,)*/g, ''));
@@ -114,4 +125,9 @@ Then(/^fields match previously filled quote$/, () => {
 
 Then(/^quote details are displayed$/, () => {
     // TODO: css selectors
+});
+
+Then(/^quote details are displayed$/, () => {
+    exnQuotePO.submitOMButton.click();
+    // TODO: add assertion
 });

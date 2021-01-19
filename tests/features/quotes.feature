@@ -32,3 +32,12 @@ Feature: Quotes
         And navigates to "approval" quote tab
         And approves quote
         Then quote details are displayed
+
+    Scenario: User submites quote to OM
+        Given a user with "sales" role is on the "home" tab
+        When clicks on "bmi" "link"
+        And clicks on "existing quotes" "link"
+        And opens the previously created quote
+        And navigates to "order entry checklist" quote tab
+        And fills PO fields
+        Then order is submited
