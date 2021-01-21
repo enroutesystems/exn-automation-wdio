@@ -77,6 +77,7 @@ export default class SalesforcePage extends Page {
 
     selectLookupValue (item = 0) {
         const [ formWindow, lookupWindow ] = browser.getWindowHandles();
+
         browser.switchToWindow(lookupWindow);
         browser.switchToFrame(1);
         browser.pause(1000);
