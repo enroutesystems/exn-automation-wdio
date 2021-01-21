@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('./tests/helpers/prototypes');
 
 let tags = process.env.CUCUMBER_TAGS !== undefined && process.env.CUCUMBER_TAGS !== ''
     ? process.env.CUCUMBER_TAGS + ' and ' : '';
@@ -32,10 +33,9 @@ exports.config = {
     services: ['chromedriver'],
     framework: 'cucumber',
     reporters: ['spec'],
-    logLevel: 'error',
+    logLevel: 'silent',
     cucumberOpts: {
-        require: ['./tests/step-definitions/*.js',
-            './tests/helpers/prototypes.js'],
+        require: ['./tests/step-definitions/*.js'],
         backtrace: false,
         requireModule: ['@babel/register'],
         dryRun: false,

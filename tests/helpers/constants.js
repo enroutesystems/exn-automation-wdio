@@ -48,7 +48,6 @@ module.exports = {
                 }
             ],
             expectedPrice: '',
-            totalPrice: ''
         },
         orderEntryChecklist: {
             poNumber: '',
@@ -56,5 +55,5 @@ module.exports = {
             paymentTerms: 'NET 90',
             orderManager: 'Sri Manikanta Karthik Vuda'
         }
-    },
+    }
 }

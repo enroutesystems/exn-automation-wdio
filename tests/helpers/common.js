@@ -7,6 +7,6 @@ const generateId = () => {
         .toUpperCase();
 }
 
-module.exports = {
+export {
     generateId
 }

@@ -1,15 +1,11 @@
 import homePO from './home.page';
-import loginPO from './login.page';
-import lookupPO from './lookup.page';
 import opportunitiesPO from './opportunities.page';
-import exnQuotePO from './exn-quotes.page';
-import exnHomePO from './exn-home.page';
+import bmiExtremeManagerPO from './bmi.extreme-manager';
+import bmiHomePO from './bmi.home.page';
 
 export {
-    exnHomePO,
-    exnQuotePO,
+    bmiHomePO,
+    bmiExtremeManagerPO,
     homePO,
-    loginPO,
-    lookupPO,
     opportunitiesPO
 };
