@@ -17,7 +17,7 @@ export default class SalesforcePage extends Page {
     get loginButton() { return $('#Login') }
 
     // Header
-    get userNavButton() { return $('#globalHeaderNameMink') }
+    get userNavButton () { return $('#globalHeaderNameMink') }
     get logoutButton () { return $('a[title="Logout"]') }
     get setupButton () { return $('a[title="Setup"]') }
     get contactInfoButton () { return $('a[title="Edit Contact Info"]') }
@@ -29,12 +29,12 @@ export default class SalesforcePage extends Page {
     get dashboardsTab () { return $('#Dashboard_Tab > a') }
     get opportunitiesTab () { return $('#Opportunity_Tab > a') }
     get contactsTab () { return $('#Contact_Tab > a') }
-    get sapContractsTab () { return $('a[title="SAP Contracts Tab"]') }
+    get sapContractsTab () { return $('a[title^="SAP Contracts Tab"]') }
     get serviceContractsTab () { return $('#ServiceContract_Tab > a') }
     get chatterTab () { return $('#Chatter_Tab > a') }
-    get applicationFeaturesTab () { return $('a[title="Application Features Tab"]') }
-    get reconDetailsTab () { return $('a[title="RECON Details Tab"]') }
-    get posDetailsTab () { return $('a[title="POS Details Tab"]') }
+    get applicationFeaturesTab () { return $('a[title^="Application Features Tab"]') }
+    get reconDetailsTab () { return $('a[title^="RECON Details Tab"]') }
+    get posDetailsTab () { return $('a[title^="POS Details Tab"]') }
 
     // Side Container
     get bmiLink() {

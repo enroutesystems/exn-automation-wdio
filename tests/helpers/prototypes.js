@@ -7,6 +7,11 @@ String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+// Returns all words capitalized
+String.prototype.capitalizeAllWords = function () {
+    return this.replace(/\b\w/g, s => s.toUpperCase());
+}
+
 // Returns short ISO String
 Date.prototype.toShortISOString = function () {
     return this.toISOString().split('T')[0];

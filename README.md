@@ -1,14 +1,17 @@
 # Front end Testing Framework
-This frameworks performs tests to Salesforce and BMI front end platforms.
+This frameworks performs tests to Salesforce and BMI front end platforms using [WDIO API](https://webdriver.io/docs/api.html) framework and [Cucumber](https://cucumber.io/docs/guides/overview/).
 ## Setup
 ### Requirements
  - node v10.23.1 or higher
- - yarn
+ - yarn (recommended, npm can also be used)
 ### Installation
 Install modules by executing the following command
 ```
     yarn install
 ```
+
+### Configure WDIO runner
+WDIO runner is configured from the [wdio.conf.js](wdio.conf.js) file, see the [WDIO runner documentation](https://webdriver.io/docs/configurationfile.html) to understand the purpose of each property.
 
 ### Env Variables
 Set the following variables in an .env file:
