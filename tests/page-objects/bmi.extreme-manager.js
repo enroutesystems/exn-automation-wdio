@@ -8,6 +8,7 @@ class BMIExtremeManagerPage extends BMIPage {
         super();
         this.quoteId;
         this.entryData = { ...quoteDetails, quoteName: `Test BMI Quote ${generateId()}` };
+        this.totalPrice;
     }
 
     /**
@@ -77,6 +78,8 @@ class BMIExtremeManagerPage extends BMIPage {
 
         this.saveQuoteButton.click();
         browser.pause(250);
+        this.totalPrice = parseFloat(this.accquisitionTotal
+            .getText().replace(/(\$||,)*/g, ''));
         
         for (const [i, item] of this.entryData.table.items.entries()) {
             this.discountTypeOptions[i].selectByVisibleText(item.discountType);

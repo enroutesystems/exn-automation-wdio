@@ -1,8 +1,8 @@
 # Front end Testing Framework
-This frameworks performs tests to Salesforce's front end platform.
+This frameworks performs tests to Salesforce and BMI front end platforms.
 ## Setup
 ### Requirements
- - node v10.18.0 or higher
+ - node v10.23.1 or higher
  - yarn
 ### Installation
 Install modules by executing the following command
@@ -14,5 +14,37 @@ Install modules by executing the following command
 Set the following variables in an .env file:
 ```
     BASE_URL={{base url}}
+    BASE_URL_BMI={{base BMI url}}
+    SALES_USERNAME={{sales email}}
+    SALES_PASSWORD={{sales password}}
+    SALES_APPROVER_USERNAME={{sales approver email}}
+    SALES_APPROVER_PASSWORD={{sales approver password}}
 ```
 Take [.env.example](.env.example) file as reference.
+
+### Create a feature
+Features are written using Gherkin, use the [Gherkin Reference](https://cucumber.io/docs/gherkin/reference/) to write features in the [features](./tests/features/) folder.
+
+### Create a step definition
+Step definitions should be written in the [step-definitions](./tests/step-definitions/) folder and match Gherkin steps using regex. See [Step Definitions Reference](https://cucumber.io/docs/cucumber/step-definitions/) to start coding.
+
+### Start Tests
+To run the whole set of scenarios the following command could be used:
+```
+    yarn test
+```
+
+#### Run specific tags
+Scenarios could have a tag inherited from the parent feature or their own tag:
+```
+@tag
+Feature: Test feature
+
+    @scenario_tag
+    Scenario: Scenario decription
+```
+
+to run specific tags we can specify them separated by commas as shown below:
+```
+    CUCUMBER=@tag1,@tag2 yarn test
+```

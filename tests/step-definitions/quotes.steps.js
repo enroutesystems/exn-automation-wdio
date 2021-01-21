@@ -49,22 +49,23 @@ When(/^fills PO fields$/, () => {
 Then(/^prices listed are updated$/, () => {
     const totalPriceUpdated = parseFloat(bmiExtremeManagerPO.accquisitionTotal
         .getText().replace(/(\$||,)*/g, ''));
+    console.log(totalPriceUpdated, 'totalPriceUpdated');
 
-    expect(bmiExtremeManagerPO.entryData.table.totalPrice).toBeGreaterThan(totalPriceUpdated);
+    expect(bmiExtremeManagerPO.totalPrice).toBeGreaterThan(totalPriceUpdated);
 });
 
 Then(/^submites quote form approval$/, () => {
     bmiExtremeManagerPO.submitForApprovalButton.click();
 
-    expect(bmiExtremeManagerPO.errorMessageBox.isDisplayed()).toBeFalsy();
+    expect(bmiExtremeManagerPO.errorMessageBox).not.toBeDisplayed();
 });
 
 Then(/^fields are no editable$/, () => {
-    expect(bmiExtremeManagerPO.name.isDisplayed()).toBe(false);
-    expect(bmiExtremeManagerPO.description.isDisplayed()).toBe(false);
-    expect(bmiExtremeManagerPO.opportunityName.isDisplayed()).toBe(false);
-    expect(bmiExtremeManagerPO.preparedByName.isDisplayed()).toBe(false);
-    expect(bmiExtremeManagerPO.skuList[0].isDisplayed()).toBe(true);
+    expect(bmiExtremeManagerPO.name).not.toBeDisplayed();
+    expect(bmiExtremeManagerPO.description).not.toBeDisplayed();
+    expect(bmiExtremeManagerPO.opportunityName).not.toBeDisplayed();
+    expect(bmiExtremeManagerPO.preparedByName).not.toBeDisplayed();
+    expect(bmiExtremeManagerPO.skuList[0]).not.toBeDisplayed();
 });
 
 Then(/^fields match previously filled quote$/, () => {
