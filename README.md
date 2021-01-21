@@ -1,5 +1,5 @@
 # Front end Testing Framework
-This frameworks performs tests to Salesforce and BMI front end platforms using [WDIO API](https://webdriver.io/docs/api.html) framework and [Cucumber](https://cucumber.io/docs/guides/overview/).
+This framework performs tests to Salesforce and BMI front end platforms using [WDIO API](https://webdriver.io/docs/api.html) framework and [Cucumber](https://cucumber.io/docs/guides/overview/).
 ## Setup
 ### Requirements
  - node v10.23.1 or higher
