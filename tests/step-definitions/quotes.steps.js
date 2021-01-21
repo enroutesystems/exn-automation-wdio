@@ -39,7 +39,9 @@ When(/^navigates to "([^"]*)" quote tab$/, (tabName) => {
 });
 
 When(/^approves quote$/, () => {
-    // TODO: button css selector
+    bmiExtremeManagerPO.approvalStatusInput.waitForDisplayed();
+
+    // TODO: approve button css selector, button is not visible
 });
 
 When(/^fills PO fields$/, () => {

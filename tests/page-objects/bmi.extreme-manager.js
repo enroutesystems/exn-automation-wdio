@@ -45,6 +45,9 @@ class BMIExtremeManagerPage extends BMIPage {
     get paymentTermsOptions () { return $('select[name="paymentTerms_q"]') }
     get orderManagerOptions () { return $('select[name="orderManager_q"]') }
     get submitOM () { return $('#submit_to_om') }
+
+    // Approval Inner Tab
+    get approvalStatusInput () { return $('.bm-approval-status') }
     
 
     // Quote Buttons

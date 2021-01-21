@@ -8,7 +8,6 @@ Given(/^a user with "([^"]*)" role is on the "([^"]*)" tab$/, (role, tab) => {
 
 When(/^clicks on "([^"]*)" "([^"]*)"$/, (name, type) => {
     name = name.toCamelCase();
-    browser.pause(250);
 
     if (type === 'link') {
         if (homePO[`${name}Link`]) {
