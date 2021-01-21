@@ -71,7 +71,7 @@ class OpportunitiesPage extends SalesforcePage {
 
     fillOpportunityFrom (item = 0) {
         const date = new Date();
-        this.entryData.closeDate = date.toExnDateString();
+        this.entryData.closeDate = date.toSFDateString();
         this.opportunityNameInput.setValue(this.entryData.opportunityName);
         this.accountNameLookup.click();
         browser.pause(200);

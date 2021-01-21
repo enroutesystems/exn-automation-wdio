@@ -49,7 +49,6 @@ When(/^fills PO fields$/, () => {
 Then(/^prices listed are updated$/, () => {
     const totalPriceUpdated = parseFloat(bmiExtremeManagerPO.accquisitionTotal
         .getText().replace(/(\$||,)*/g, ''));
-    console.log(totalPriceUpdated, 'totalPriceUpdated');
 
     expect(bmiExtremeManagerPO.totalPrice).toBeGreaterThan(totalPriceUpdated);
 });

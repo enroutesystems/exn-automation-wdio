@@ -109,7 +109,7 @@ class BMIExtremeManagerPage extends BMIPage {
         const date = new Date();
 
         this.entryData.orderEntryChecklist.poNumber = `${generateId()}-TEST`;
-        this.entryData.orderEntryChecklist.poDate = date.toExnDateString('/');
+        this.entryData.orderEntryChecklist.poDate = date.toSFDateString('/');
         this.poNumber.setValue(this.entryData.orderEntryChecklist.poNumber);
         this.poDate.setValue(this.entryData.orderEntryChecklist.poDate);
         this.paymentTermsOptions.selectByVisibleText(this.entryData.orderEntryChecklist.paymentTerms);

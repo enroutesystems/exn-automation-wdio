@@ -10,9 +10,7 @@ class BMIHomePage extends BMIPage {
      * Getters
      */
 
-    get existingQuotesLink() {
-        return $('#hpwrap > div > a');
-    }
+    get existingQuotesLink () { return $('#hpwrap > div > a') }
 }
 
 export default new BMIHomePage();
