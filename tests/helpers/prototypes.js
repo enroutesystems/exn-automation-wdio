@@ -12,12 +12,14 @@ Date.prototype.toShortISOString = function () {
     return this.toISOString().split('T')[0];
 };
 
-Date.prototype.toExnDateString = function () {
+// Creates a Short Date String that matches Salesforce req 
+Date.prototype.toSFDateString = function (separator = '-') {
     const day = this.getDate().toString().padStart(2, '0');
     const month = (this.getMonth() + 1).toString().padStart(2, '0');
-    return `${day}-${month}-${this.getFullYear()}`;
+    return day + separator + month + separator + this.getFullYear();
 }
 
+// String to Camel case syntax
 String.prototype.toCamelCase = function () {
     return this.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter, index) {
         return index == 0 ? letter.toLowerCase() : letter.toUpperCase();

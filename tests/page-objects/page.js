@@ -1,6 +1,15 @@
 export default class Page {
 
-    open (path = '') {
-        return browser.url(`${process.env.BASE_URL}${path}`)
+    constructor() {
+        this.baseUrl = '';
     }
+
+    /**
+     * Methods
+     */
+
+    openPage (path = '') {
+        return browser.url(`${this.baseUrl}${path}`)
+    }
+
 }

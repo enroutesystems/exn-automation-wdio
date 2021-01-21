@@ -1,117 +1,85 @@
 import { Given, When, Then } from 'cucumber';
-import { opportunitiesPO, exnQuotePO } from '../page-objects/index';
-
-const details = require('../helpers/constants').quoteDetails;
-const generateId = require('../helpers/common').generateId;
-const setValueHiddenElements = (querySelector, i, value) => {
-    const elements = document.querySelectorAll(querySelector);
-    elements[i].value = value;
-};
+import { opportunitiesPO, bmiExtremeManagerPO } from '../page-objects/index';
 
 Given(/^opens an opportunity$/, () => {
     opportunitiesPO.newOpportunitiesButton.waitForExist();
-
-    const [ latestOp ] = opportunitiesPO.opportinitiesList;
-
-    latestOp.click();
+    opportunitiesPO.openLatestOpportunity();
 });
 
 When(/^quote form is displayed$/, () => {
-    exnQuotePO.quoteNumber.waitForExist();
-    exnQuotePO.quoteId = exnQuotePO.quoteNumber.getText();
-    details.opportunityName = exnQuotePO.opportunityName.getText();
+    bmiExtremeManagerPO.quoteNumber.waitForExist();
+    bmiExtremeManagerPO.quoteId = bmiExtremeManagerPO.quoteNumber.getText();
+    bmiExtremeManagerPO.entryData.opportunityName = bmiExtremeManagerPO.opportunityName.getText();
 });
 
 When(/^fills preliminar form data$/, () => {
-    exnQuotePO.quoteNameInput.setValue(`Test BMI Quote ${generateId()}`);
-    exnQuotePO.descriptionInput.setValue(details.description);
-    details.quoteName = exnQuotePO.quoteNameInput.getValue();
+    bmiExtremeManagerPO.fillQuoteInformation();
 });
 
 When(/^fills sku list$/, () => {
-    exnQuotePO.updateDiscountButton.waitForExist();
-
-    // Add items to table
-    for (const [i, item] of details.table.items.entries()) {
-        exnQuotePO.addItemButtons[i].click();
-        browser.pause(250);
-        exnQuotePO.skuInputs[i].setValue(item.sku);
-    }
-
-    exnQuotePO.saveQuoteButton.click();
-    browser.pause(250);
-
-    // Add discounts
-    for (const [i, item] of details.table.items.entries()) {
-        exnQuotePO.discountTypeOptions[i].selectByVisibleText(item.discountType);
-        browser.pause(250);
-
-        switch (item.discountType) {
-            case '%':
-                browser.execute(setValueHiddenElements, // script to execute
-                    exnQuotePO.percentOffInput[i].selector, i, item.discountQuantity); // parameters
-                break;
-            case '$':
-                browser.execute(setValueHiddenElements, // script to execute
-                    exnQuotePO.priceOffInput[i].selector, i, item.discountQuantity); // parameters
-                break;
-            default:
-                break;
-        }
-    }
+    bmiExtremeManagerPO.updateDiscountButton.waitForExist();
+    bmiExtremeManagerPO.fillQuoteList();
 });
 
 When(/^selects "([^"]*)" discount$/, (discount) => {
-    details.table.totalPrice = parseFloat(exnQuotePO.accquisitionTotal
+    bmiExtremeManagerPO.totalPrice = parseFloat(bmiExtremeManagerPO.accquisitionTotal
         .getText().replace(/(\$||,)*/g, ''));
 
     // TODO: select discount
 });
 
 When(/^opens the previously created quote$/, () => {
-    exnQuotePO.quoteLink.waitForExist();
-    exnQuotePO.quoteLink.click();
-    exnQuotePO.quoteNumber.waitForExist();
+    bmiExtremeManagerPO.quoteLink.waitForExist();
+    bmiExtremeManagerPO.quoteLink.click();
+    bmiExtremeManagerPO.quoteNumber.waitForExist();
 });
 
 When(/^navigates to "([^"]*)" quote tab$/, (tabName) => {
-    tabName = tabName.toCamelCase();
-    exnQuotePO[`${tabName}Tab`].click();
+    bmiExtremeManagerPO.switchToInnerTab(tabName);
 });
 
 When(/^approves quote$/, () => {
     // TODO: button css selector
 });
 
+When(/^fills PO fields$/, () => {
+    bmiExtremeManagerPO.fillOrderEntry();
+});
+
 Then(/^prices listed are updated$/, () => {
-    const totalPriceUpdated = parseFloat(exnQuotePO.accquisitionTotal
+    const totalPriceUpdated = parseFloat(bmiExtremeManagerPO.accquisitionTotal
         .getText().replace(/(\$||,)*/g, ''));
 
-    expect(details.table.totalPrice).toBeGreaterThan(totalPriceUpdated);
+    expect(bmiExtremeManagerPO.totalPrice).toBeGreaterThan(totalPriceUpdated);
 });
 
 Then(/^submites quote form approval$/, () => {
-    exnQuotePO.submitForApprovalButton.click();
+    bmiExtremeManagerPO.submitForApprovalButton.click();
 
-    expect(exnQuotePO.errorMessageBox.isDisplayed()).toBeFalsy();
+    expect(bmiExtremeManagerPO.errorMessageBox).not.toBeDisplayed();
 });
 
 Then(/^fields are no editable$/, () => {
-    expect(exnQuotePO.quoteName.isDisplayed()).toBe(true);
-    expect(exnQuotePO.description.isDisplayed()).toBe(true);
-    expect(exnQuotePO.opportunityName.isDisplayed()).toBe(true);
-    expect(exnQuotePO.preparedByName.isDisplayed()).toBe(true);
-    expect(exnQuotePO.skuList[0].isDisplayed()).toBe(true);
+    expect(bmiExtremeManagerPO.name).not.toBeDisplayed();
+    expect(bmiExtremeManagerPO.description).not.toBeDisplayed();
+    expect(bmiExtremeManagerPO.opportunityName).not.toBeDisplayed();
+    expect(bmiExtremeManagerPO.preparedByName).not.toBeDisplayed();
+    expect(bmiExtremeManagerPO.skuList[0]).not.toBeDisplayed();
 });
 
 Then(/^fields match previously filled quote$/, () => {
-    expect(exnQuotePO.quoteNumber.getText()).toEqual(exnQuotePO.quoteId);
-    expect(exnQuotePO.quoteName.getText()).toEqual(details.quoteName);
-    expect(exnQuotePO.description.getText()).toEqual(details.description);
-    expect(exnQuotePO.opportunityName.getText()).toEqual(details.opportunityName);
-    expect(exnQuotePO.status.getText()).toEqual('Pending Approval');
+    expect(bmiExtremeManagerPO.quoteNumber.getText()).toEqual(bmiExtremeManagerPO.quoteId);
+    expect(bmiExtremeManagerPO.name.getText()).toEqual(bmiExtremeManagerPO.entryData.quoteName);
+    expect(bmiExtremeManagerPO.description.getText()).toEqual(bmiExtremeManagerPO.entryData.description);
+    expect(bmiExtremeManagerPO.opportunityName.getText()).toEqual(bmiExtremeManagerPO.entryData.opportunityName);
+    expect(bmiExtremeManagerPO.status.getText()).toEqual('Pending Approval');
 });
 
 Then(/^quote details are displayed$/, () => {
     // TODO: css selectors
+});
+
+Then(/^order is submited$/, () => {
+    bmiExtremeManagerPO.submitOMButton.click();
+    // TODO: add assertion
 });
